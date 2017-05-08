@@ -1,0 +1,7 @@
+  <div class="contents row" >
+    <p><%= @nickname %>さんの投稿一覧</p>
+    <% @uploads.each do |upload| %>
+      <%= render partial: "uploads/upload", locals: { upload: upload } %>
+    <% end %>
+    <%= paginate(@uploads) %>
+  </div>

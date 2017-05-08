@@ -1,0 +1,6 @@
+ <div class="contents row">
+  <% @uploads.each do |upload| %>
+    <%= render partial: "upload", locals: { upload: upload } %>
+  <% end %>
+  <%= paginate(@uploads) %>
+</div>
