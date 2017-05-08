@@ -3,13 +3,21 @@ Rails.application.routes.draw do
   root   'uploads#index'
   resources :uploads do
      resources :comments, only: [:create]
+     resources :likes, only: [:create, :destroy]
   #   resources :searchs, only: [:show]
   #   resources :bulletins, only: [:show]
   end
 
+  resources :uploads do
+    resources :likes, only: [:create, :destroy]
+  end
   # resources :bulletins do
   #   resources :bulletins_comments, only: [:create]
   # end
+
+  resources :users do
+    resources :uploads, only: [:index]
+  end
 
   resources :users, only: [:show]
   # resources :users, shallow: true

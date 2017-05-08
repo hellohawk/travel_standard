@@ -1,19 +1,15 @@
 <div class="contents row">
   <div class="container">
 
-    <%= render partial: "form", locals: { upload: upload } %>
+<%= form_for @upload,:url => {:action => 'create'}, :html => {:multipart => true} do |f| %>
+    <h3>
+      投稿する
+    </h3>
+  <%= f.file_field :image %><br>
+  <textarea cols="30" name="comment" placeholder="comment" rows="10"></textarea>
+  <%= f.submit %>
 
-<!--     <%= form_tag('/uploads', method: :post) do %>
-      <h3>
-        投稿する
-      </h3>
-      <input placeholder="Image Url" type="text" name="image">
-
-      <textarea cols="30" name="comment" placeholder="comment" rows="10"></textarea>
-      <input type="submit" value="SENT">
-    <% end %>
- -->
-
+<% end %>
 
  </div>
 </div>

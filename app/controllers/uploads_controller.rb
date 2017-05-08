@@ -7,13 +7,19 @@ class UploadsController < ApplicationController
   end
 
   def new
+    @upload = Upload.new
   end
 
   def create
       Upload.create(image: upload_params[:image], comment: upload_params[:comment], user_id: current_user.id)
+      # @like = Like.create(user_id: current_user.id, upload_id: params[:upload_id])
+      # @likes = Like.where(upload_id: params[:upload_id])
   end
 
   def destroy
+      like = Like.find_by(user_id: current_user.id, upload_id: params[:upload_id])
+    like.destroy
+      @likes = Like.where(upload_id: params[:upload_id])
       upload = Upload.find(params[:id])
       upload.destroy if upload.user_id == current_user.id
   end
@@ -36,6 +42,11 @@ class UploadsController < ApplicationController
     def upload_params
       params.permit(:image, :comment)
       # params.require(:upload).permit(:image,:comment)
+    end
+
+    def correct_user
+      @upload = current_user.uploads.find_by(id: params[:id])
+      redirect_to user_pictures_path(current_user) if @upload.nil?
     end
 
     def move_to_index
