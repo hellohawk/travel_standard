@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508065128) do
+ActiveRecord::Schema.define(version: 20170511102733) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -22,8 +27,23 @@ ActiveRecord::Schema.define(version: 20170508065128) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "user_id",    limit: 4
+    t.integer  "upload_id",  limit: 4
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.integer  "upload_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "city",         limit: 255
+    t.string   "city_code",    limit: 255
+    t.string   "country",      limit: 255
+    t.string   "country_code", limit: 255
+    t.string   "area",         limit: 255
+    t.string   "area_code",    limit: 255
+    t.integer  "tour_count",   limit: 4
   end
 
   create_table "uploads", force: :cascade do |t|
@@ -33,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170508065128) do
     t.string   "comment",     limit: 255
     t.integer  "user_id",     limit: 4
     t.integer  "likes_count", limit: 4
+    t.integer  "search_id",   limit: 4
   end
 
   create_table "users", force: :cascade do |t|

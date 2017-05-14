@@ -1,5 +1,5 @@
 class UploadsController < ApplicationController
-
+  autocomplete :search, :city , :full => true
   before_action :move_to_index, except: :index
 
   def index
@@ -12,14 +12,9 @@ class UploadsController < ApplicationController
 
   def create
       Upload.create(image: upload_params[:image], comment: upload_params[:comment], user_id: current_user.id)
-      # @like = Like.create(user_id: current_user.id, upload_id: params[:upload_id])
-      # @likes = Like.where(upload_id: params[:upload_id])
   end
 
   def destroy
-      like = Like.find_by(user_id: current_user.id, upload_id: params[:upload_id])
-    like.destroy
-      @likes = Like.where(upload_id: params[:upload_id])
       upload = Upload.find(params[:id])
       upload.destroy if upload.user_id == current_user.id
   end
@@ -37,6 +32,18 @@ class UploadsController < ApplicationController
       @upload = Upload.find(params[:id])
       @comments = @upload.comments.includes(:user)
   end
+
+  def search
+      @searches = params[:word]
+    # ここにモデルからもらったparameterを使用する
+  end
+
+  # def autocomplete_upload_comment
+  #   term = params[:term]
+  #   binding.pry
+  #   uploads = Upload.scope_name(term)
+  #   render json: uploads.map { |upload| { id: upload.id, label: upload.method_name, value: upload.method_name } }
+  # end
 
   private
     def upload_params

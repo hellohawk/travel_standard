@@ -1,8 +1,21 @@
- <div class="contents row">
+<div class="contents row">
 
+
+
+<p>地域検索</p>
+
+<%= autocomplete_field_tag :comment,
+    '',
+    autocomplete_search_city_uploads_path,
+    # :class => 'form-control',
+    :placeholder => '都市名など' %>
+
+      <div id="regions_div" style="width: 600px; height: 400px;"></div>
+      <div id="chart_div" style="width: 600px; height: 400px;"></div>
 
  <% @uploads.each do |upload| %>
     <%= render partial: "upload", locals: { upload: upload } %>
+    <%= render partial: "like", locals: { upload: upload }  %>
 <% end %>
 
     <%= paginate(@uploads) %>

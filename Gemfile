@@ -38,7 +38,13 @@ gem 'kaminari'
 gem 'pry-rails'
 gem 'carrierwave'
 gem 'rmagick', '2.16.0'
-
+gem 'json'
+gem 'pry'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'rails4-autocomplete'
+gem 'chartkick'
+gem 'jquery-turbolinks'
 
 
 group :development, :test do

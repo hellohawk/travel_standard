@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
   root   'uploads#index'
+
   resources :uploads do
-     resources :comments, only: [:create]
      resources :likes, only: [:create, :destroy]
+     resources :comments, only: [:create]
+     get :autocomplete_search_city, :on => :collection
+     get "search", to: "uploads#search", on: :collection
   #   resources :searchs, only: [:show]
   #   resources :bulletins, only: [:show]
   end
 
-  resources :uploads do
-    resources :likes, only: [:create, :destroy]
-  end
   # resources :bulletins do
   #   resources :bulletins_comments, only: [:create]
   # end
@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show]
+
+
   # resources :users, shallow: true
 
 
