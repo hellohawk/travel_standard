@@ -1,0 +1,7 @@
+<h1>Maps#index</h1>
+<p>Find me in app/views/maps/index.html.erb</p>
+
+<%= form_tag({controller: "maps", action: "import", method: "post"}, {multipart: true}) do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "オブジェクトを一括インポート" %>
+<% end %>

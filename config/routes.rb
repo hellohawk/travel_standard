@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :items
+  get 'maps/index'
+
   devise_for :users
   root   'uploads#index'
 
@@ -9,6 +12,10 @@ Rails.application.routes.draw do
      get "search", to: "uploads#search", on: :collection
   #   resources :searchs, only: [:show]
   #   resources :bulletins, only: [:show]
+  end
+
+  resources 'maps', only: :index do
+    collection { post :import }
   end
 
   # resources :bulletins do

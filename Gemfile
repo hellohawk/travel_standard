@@ -45,7 +45,9 @@ gem 'jquery-ui-rails'
 gem 'rails4-autocomplete'
 gem 'chartkick'
 gem 'jquery-turbolinks'
-
+gem 'gon'
+gem 'carrierwave'
+gem 'fog'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -2,12 +2,16 @@
 <html>
   <head>
     <title>Travel_standard</title>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <!-- コレがないと読み込めない -->
+    <%= include_gon %>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <%= javascript_include_tag 'application' ,'data-turbolinks-track' => true %>
 <!-- コレがなくても読み込める -->
     <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZfcHVxgJkgkBJghbwE7Q5xFhhOdzc6JQ&callback=initMap"
+  type="text/javascript"></script>
 
     <%= csrf_meta_tags %>
 

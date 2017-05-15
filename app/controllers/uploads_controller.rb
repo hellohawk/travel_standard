@@ -4,6 +4,9 @@ class UploadsController < ApplicationController
 
   def index
      @uploads = Upload.includes(:user).page(params[:page]).per(5).order("created_at DESC")
+      gon.region = "001"
+      gon.resolution = "continents"
+      gon.data = [["region_name","region_code"]] + Map.where(pre_resolutions:gon.region).pluck(:regions_name,:regions)
   end
 
   def new
@@ -34,7 +37,16 @@ class UploadsController < ApplicationController
   end
 
   def search
-      @searches = params[:word]
+      gon.region = params[:region]
+      # if integer_string?(gon.region) then
+      #   if gon.region.length < 3 then
+      #     gon.region = (3-gon.region.length)*"0" + gon.region
+      #   end
+      # end
+      gon.resolution = params[:resolution]
+      gon.data = [["region_code","region_name"]] + Map.where(pre_resolutions:gon.region).pluck(:regions_name,:regions)
+      @uploads = Upload.includes(:user).page(params[:page]).per(5).order("created_at DESC")
+      render :action => "index"
     # ここにモデルからもらったparameterを使用する
   end
 
@@ -44,6 +56,13 @@ class UploadsController < ApplicationController
   #   uploads = Upload.scope_name(term)
   #   render json: uploads.map { |upload| { id: upload.id, label: upload.method_name, value: upload.method_name } }
   # end
+
+  def integer_string?(str)
+    Integer(str)
+    true
+  rescue ArgumentError
+    false
+  end
 
   private
     def upload_params
