@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515085019) do
+ActiveRecord::Schema.define(version: 20170516040229) do
 
   create_table "addresses", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -64,13 +64,17 @@ ActiveRecord::Schema.define(version: 20170515085019) do
   end
 
   create_table "uploads", force: :cascade do |t|
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "image",       limit: 255
-    t.string   "comment",     limit: 255
-    t.integer  "user_id",     limit: 4
-    t.integer  "likes_count", limit: 4
-    t.integer  "search_id",   limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "image",        limit: 255
+    t.string   "comment",      limit: 255
+    t.integer  "user_id",      limit: 4
+    t.integer  "likes_count",  limit: 4
+    t.integer  "search_id",    limit: 4
+    t.string   "continent",    limit: 255
+    t.string   "subcontinent", limit: 255
+    t.string   "country",      limit: 255
+    t.string   "city",         limit: 255
   end
 
   create_table "users", force: :cascade do |t|

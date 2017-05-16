@@ -1,15 +1,12 @@
 <div class="contents row">
   <div class="container">
 
-<%= form_for @upload,:url => {:action => 'create'}, :html => {:multipart => true} do |f| %>
-    <h3>
-      投稿する
-    </h3>
-  <%= f.file_field :image %><br>
-  <textarea cols="30" name="comment" placeholder="comment" rows="10"></textarea>
-  <%= f.submit %>
-
+<%= form_for(@upload) do |f| %>
+  <%= f.autocomplete_field :comment, autocomplete_search_city_uploads_path,
+    id_element: '#upload_search_id' %>
+  <%= f.submit '登録' %>
 <% end %>
+
 
  </div>
 </div>

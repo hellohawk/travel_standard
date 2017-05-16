@@ -14,7 +14,7 @@ class UploadsController < ApplicationController
   end
 
   def create
-      Upload.create(image: upload_params[:image], comment: upload_params[:comment], user_id: current_user.id)
+      Upload.create(image: upload_params[:image], continent: upload_params[:continent], subcontinent: upload_params[:subcontinent], country: upload_params[:country], city: upload_params[:city], user_id: current_user.id)
   end
 
   def destroy
@@ -38,11 +38,6 @@ class UploadsController < ApplicationController
 
   def search
       gon.region = params[:region]
-      # if integer_string?(gon.region) then
-      #   if gon.region.length < 3 then
-      #     gon.region = (3-gon.region.length)*"0" + gon.region
-      #   end
-      # end
       gon.resolution = params[:resolution]
       gon.data = [["region_code","region_name"]] + Map.where(pre_resolutions:gon.region).pluck(:regions_name,:regions)
       @uploads = Upload.includes(:user).page(params[:page]).per(5).order("created_at DESC")
@@ -50,12 +45,12 @@ class UploadsController < ApplicationController
     # ここにモデルからもらったparameterを使用する
   end
 
-  # def autocomplete_upload_comment
-  #   term = params[:term]
-  #   binding.pry
-  #   uploads = Upload.scope_name(term)
-  #   render json: uploads.map { |upload| { id: upload.id, label: upload.method_name, value: upload.method_name } }
-  # end
+   # def autocomplete_search_city
+   #   term = params[:term]
+   #   binding.pry
+   #   uploads = Upload.scope_name(term)
+   #   render json: uploads.map { |upload| { id: upload.id, label: upload.method_name, value: upload.method_name } }
+   # end
 
   def integer_string?(str)
     Integer(str)
@@ -66,7 +61,7 @@ class UploadsController < ApplicationController
 
   private
     def upload_params
-      params.permit(:image, :comment)
+      params.permit(:image, :continent, :subcontinent, :country ,:city)
       # params.require(:upload).permit(:image,:comment)
     end
 
