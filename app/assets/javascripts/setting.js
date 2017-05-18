@@ -111,7 +111,8 @@ $(window).load(function(){
 });
 
 
-// function initMap(){};
+
+function initMap(){};
 
 $("#regions_div").ready(function(){
 
