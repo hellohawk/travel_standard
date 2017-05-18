@@ -6,7 +6,6 @@ require 'pry'
 country = "Romania"
 city = "Calarasi"
 
-binding.pry
 
 a = Search.all.pluck(:city_name,:country_name,:subconti_name,:conti_name,:city,:country,:subcontinent,:continent)
 
