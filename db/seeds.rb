@@ -25,7 +25,7 @@ maps_csv = CSV.readlines("db/maps.csv")
 maps_csv.shift
 
   maps_csv.each do |row|
-     Map.create(resolutions: row[3], regions: row[4], regions_name: row[5], information: row[6], pre_resolutions: row[7])
+     Map.create(resolutions: row[3], regions: row[4], regions_name: row[5], pre_resolutions: row[7])
    end
 
 # uploads_csv = CSV.readlines("db/uploads.csv")
