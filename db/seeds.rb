@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require "csv"
+
+likes_csv = CSV.readlines("db/likes.csv")
+likes_csv.shift
+  likes_csv.each do |row|
+    Like.create(user_id: row[3], upload_id: row[4])
+  end
