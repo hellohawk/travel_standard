@@ -11,4 +11,7 @@ class Map < ActiveRecord::Base
   def self.updatable_attributes
     ["id","resolutions","pre_resolutions","regions_name","regions"]
   end
+
+  belongs_to :upload
+
 end

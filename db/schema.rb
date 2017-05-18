@@ -11,12 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516040229) do
+ActiveRecord::Schema.define(version: 20170518051810) do
 
   create_table "addresses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "cities", force: :cascade do |t|
+    t.integer  "country_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "cities", ["country_id"], name: "index_cities_on_country_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -25,6 +33,19 @@ ActiveRecord::Schema.define(version: 20170516040229) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
+
+  create_table "contis", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.integer  "subconti_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "countries", ["subconti_id"], name: "index_countries_on_subconti_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.text     "description", limit: 65535
@@ -51,17 +72,26 @@ ActiveRecord::Schema.define(version: 20170516040229) do
   end
 
   create_table "searches", force: :cascade do |t|
-    t.integer  "upload_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "city",         limit: 255
-    t.string   "city_code",    limit: 255
-    t.string   "country",      limit: 255
-    t.string   "country_code", limit: 255
-    t.string   "area",         limit: 255
-    t.string   "area_code",    limit: 255
-    t.integer  "tour_count",   limit: 4
+    t.integer  "upload_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "country_name",  limit: 255
+    t.string   "city_name",     limit: 255
+    t.string   "conti_name",    limit: 255
+    t.string   "subconti_name", limit: 255
+    t.string   "country",       limit: 255
+    t.string   "city",          limit: 255
+    t.string   "continent",     limit: 255
+    t.string   "subcontinent",  limit: 255
   end
+
+  create_table "subcontis", force: :cascade do |t|
+    t.integer  "conti_id",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "subcontis", ["conti_id"], name: "index_subcontis_on_conti_id", using: :btree
 
   create_table "uploads", force: :cascade do |t|
     t.datetime "created_at",               null: false
@@ -75,6 +105,7 @@ ActiveRecord::Schema.define(version: 20170516040229) do
     t.string   "subcontinent", limit: 255
     t.string   "country",      limit: 255
     t.string   "city",         limit: 255
+    t.integer  "map_id",       limit: 4
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,4 +127,7 @@ ActiveRecord::Schema.define(version: 20170516040229) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "cities", "countries"
+  add_foreign_key "countries", "subcontis"
+  add_foreign_key "subcontis", "contis"
 end

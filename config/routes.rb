@@ -10,11 +10,15 @@ Rails.application.routes.draw do
      resources :comments, only: [:create]
      get :autocomplete_search_city, :on => :collection
      get "search", to: "uploads#search", on: :collection
-  #   resources :searchs, only: [:show]
+
   #   resources :bulletins, only: [:show]
   end
 
   resources 'maps', only: :index do
+    collection { post :import }
+  end
+
+  resources 'searches', only: :index do
     collection { post :import }
   end
 

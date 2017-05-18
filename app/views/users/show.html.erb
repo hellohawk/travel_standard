@@ -1,7 +1,22 @@
   <div class="contents row" >
     <p><%= @nickname %>さんの投稿一覧</p>
+
+    <div>
     <% @uploads.each do |upload| %>
-      <%= render partial: "uploads/upload", locals: { upload: upload } %>
+          <tr>
+            <td><%= image_tag upload.image.to_s %></td>
+          <li>
+            <%= link_to '編集', "/uploads/#{upload.id}/edit", method: :get %>
+          </li>
+          <li>
+            <%= link_to '削除', "/uploads/#{upload.id}", method: :delete %>
+          </li>
+          </tr>
     <% end %>
+    </div>>
+
+
+
+
     <%= paginate(@uploads) %>
   </div>

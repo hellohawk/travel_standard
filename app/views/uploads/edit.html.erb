@@ -1,10 +1,17 @@
-  <div class="contents row">
-    <h3>編集する</h3>
-      <%= form_for @upload,:url => {:action => 'update'}, :html => {:multipart => true} do |f| %>
-        <%= f.file_field :image %><br>
-          <p>コメントしろ</p>
-          <%= text_field :comment, class: "hogehoge" %>
-        <%= f.submit %>
-      <% end %>
-  </div>
 
+<div class="contents row">
+  <div class="container">
+
+    <h3>編集する</h3>
+
+<%= form_tag('/uploads/update',:method => :put, :multipart => true ) do %>
+    <%= select_tag :continent, options_for_select(@continents) %>
+    <%= select_tag :subcontinent, options_for_select(@subcontinents) %>
+    <%= select_tag :country, options_for_select(@countries) %>
+    <%= text_field :city, :id %>
+    <%= file_field_tag :image %>
+    <%= submit_tag 'upload' %>
+  <% end %>
+
+ </div>
+</div>

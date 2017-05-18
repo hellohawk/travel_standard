@@ -16,5 +16,4 @@
 //= require autocomplete-rails
 //= require chartkick
 //= require jquery.turbolinks
-//= require turbolinks
 //= require_tree .

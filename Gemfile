@@ -48,6 +48,7 @@ gem 'jquery-turbolinks'
 gem 'gon'
 gem 'carrierwave'
 gem 'fog'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,3 +63,6 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  gem 'rails_12factor'
+end

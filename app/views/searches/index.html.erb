@@ -1,0 +1,6 @@
+
+
+<%= form_tag({controller: "searches", action: "import", method: "post"}, {multipart: true}) do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "オブジェクトを一括インポート" %>
+<% end %>

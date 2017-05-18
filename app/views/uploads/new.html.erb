@@ -1,11 +1,15 @@
 <div class="contents row">
   <div class="container">
 
-<%= form_for(@upload) do |f| %>
-  <%= f.autocomplete_field :comment, autocomplete_search_city_uploads_path,
-    id_element: '#upload_search_id' %>
-  <%= f.submit '登録' %>
-<% end %>
+
+  <%= form_tag('/uploads',:method => :post, :multipart => true ) do %>
+    <%= select_tag :continent, options_for_select(@continents) %>
+    <%= select_tag :subcontinent, options_for_select(@subcontinents) %>
+    <%= select_tag :country, options_for_select(@countries) %>
+    <%= text_field :city, :id %>
+    <%= file_field_tag :image %>
+    <%= submit_tag 'upload' %>
+  <% end %>
 
 
  </div>

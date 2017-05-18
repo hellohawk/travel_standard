@@ -10,6 +10,8 @@ class Upload < ActiveRecord::Base
    likes.find_by(user_id: user_id)
   end
 
+ has_many   :searches
+ has_many   :maps
  has_many   :comments
 
 end
