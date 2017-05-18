@@ -49,7 +49,7 @@ test:
 #
 production:
   <<: *default
-  adaptor: postgresql
+  adapter: postgresql
   encoding: unicode
   pool: 5
   # database: travel_standard_production
