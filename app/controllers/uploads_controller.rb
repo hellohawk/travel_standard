@@ -101,7 +101,6 @@ binding.pry
       gon.resolution = params[:resolution]
       gon.data = [["region_code","region_name"]] + Map.where(pre_resolutions:gon.region).pluck(:regions_name,:regions)
 
-
       if gon.resolution == "subcontinents" then
         @uploads = Upload.where(subcontinent:gon.region).order("likes_count")
       elsif gon.resolution == "country" then
