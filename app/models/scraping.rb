@@ -4,7 +4,7 @@
 
 
 
-# class Scraping
+# class Scrapings
 #   def self.parse(start_num)
 #     uri = URI.parse("http://webservice.recruit.co.jp/ab-road/city/v1/?key=5900068d2833119a&format=json&start=#{start_num}&count=100")
 #     json = Net::HTTP.get(uri)

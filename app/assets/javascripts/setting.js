@@ -150,9 +150,7 @@ $("#regions_div").ready(function(){
 
         var options = {
           backgroundColor: '#81d4fa',
-          enableRegionInteractivity: 'true',
-          width: 556,
-          height: 347
+          enableRegionInteractivity: 'true'
         };
 
         options['colorAxis'] = { minValue : 0, maxValue : 1, colors : ['#FF0000','#0000FF']};

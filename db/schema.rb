@@ -13,11 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20170518051810) do
 
-  create_table "addresses", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "cities", force: :cascade do |t|
     t.integer  "country_id", limit: 4
     t.datetime "created_at",           null: false
@@ -72,7 +67,7 @@ ActiveRecord::Schema.define(version: 20170518051810) do
   end
 
   create_table "searches", force: :cascade do |t|
-    t.integer  "upload_id",     limit: 4
+    t.string   "upload_id",     limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "country_name",  limit: 255

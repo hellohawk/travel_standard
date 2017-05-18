@@ -28,9 +28,9 @@ maps_csv.shift
      Map.create(resolutions: row[3], regions: row[4], regions_name: row[5], pre_resolutions: row[7])
    end
 
-uploads_csv = CSV.readlines("db/uploads.csv")
-uploads_csv.shift
+# uploads_csv = CSV.readlines("db/uploads.csv")
+# uploads_csv.shift
 
-  uploads_csv.each do |row|
-     Upload.create(image: row[3], comment: row[4], user_id: row[5], likes_count: row[6], search_id: row[7], continent: row[8], subcontinent: row[9], country: row[10], city: row[11], map_id: row[12])
-  end
+#   uploads_csv.each do |row|
+#      Upload.create(image: row[3], comment: row[4], user_id: row[5], likes_count: row[6], search_id: row[7], continent: row[8], subcontinent: row[9], country: row[10], city: row[11], map_id: row[12])
+#   end
