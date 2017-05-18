@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
-  database: travel_standard_production
-  username: travel_standard
-  password: <%= ENV['TRAVEL_STANDARD_DATABASE_PASSWORD'] %>
+  adaptor: postgresql
+  encoding: unicode
+  pool: 5
+  # database: travel_standard_production
+  # username: travel_standard
+  # password: <%= ENV['TRAVEL_STANDARD_DATABASE_PASSWORD'] %>
