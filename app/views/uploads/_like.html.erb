@@ -1,11 +1,11 @@
   <% if upload.like_user(current_user.id) %>
-    <%= button_to upload_like_path(:id, upload_id: upload.id), method: :delete, id: "button", remote: true do %>
+    <%= button_to upload_like_path(:id, upload_id: upload.id), method: :delete, name:"好き", id: "button", remote: true do %>
       <span>
         <%= upload.likes_count %>
       </span>
     <% end %>
   <% else %>
-    <%= button_to upload_likes_path(upload), id: "button", remote: true do %>
+    <%= button_to upload_likes_path(upload), id: "button", name:"好き", remote: true do %>
       <span>
         <%= upload.likes_count %>
       </span>

@@ -112,9 +112,9 @@ class UploadsController < ApplicationController
       gon.resolution = params[:resolution]
       gon.data = [["region_code","region_name"]] + Map.where(pre_resolutions:gon.region).pluck(:regions_name,:regions)
 
-      @china = Upload.where(country:"CN")[1..4]
-      @japan = Upload.where(country:"JP")[1..4]
-      @india = Upload.where(country:"IN")[1..4]
+      @china = Upload.where(country:"CN")[1..6]
+      @japan = Upload.where(country:"JP")[1..6]
+      @india = Upload.where(country:"IN")[1..6]
 
       if gon.resolution == "subcontinents" then
         @uploads = Upload.where(subcontinent:gon.region).order("likes_count")
