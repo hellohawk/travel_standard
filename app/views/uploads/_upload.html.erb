@@ -4,6 +4,7 @@
   <div class="2u">
     <span class="image fit">
       <a href="#"><%= image_tag upload.image.thumb.to_s %></a>
+      <%= render partial: "like", locals: { upload: upload } %>
     </span>
   </div>
 

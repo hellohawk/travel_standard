@@ -1,2 +1,2 @@
 id,"email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at",sign_in_count,"current_sign_in_at","last_sign_in_at","current_sign_in_ip","last_sign_in_ip","created_at","updated_at","nickname"
-1,"shuhei.hatori@gmail.com","$2a$11$dzfJHkFgU4PwyxCePjh.zOoPZXT4n.zX5LdfifIoDKY2.QI3iyjIu",NULL,NULL,NULL,7,"2017-05-18 04:29:52","2017-05-17 17:53:39","::1","::1","2017-05-11 10:54:36","2017-05-18 04:29:52","hatori"
+1,"shuhei.hatori@gmail.com","$2a$11$v.oHT5x0MUb2PX53FgZLFubIaPesa1mE5.atbodnnaqKFdx8QISUG",NULL,NULL,NULL,2,"2017-05-19 03:51:51","2017-05-18 23:07:30","::1","::1","2017-05-18 23:07:30","2017-05-19 03:51:51","hatori"
