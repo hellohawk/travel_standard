@@ -1,7 +1,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -12,6 +12,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  def cache_dir
+    "travel_standard/tmp/cache"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -47,7 +51,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
  # リサイズしたり画像形式を変更するのに必要
-  include CarrierWave::RMagick
+  # include CarrierWave::RMagick
 
  # 画像の上限を200pxにする
    process :resize_to_limit => [200, 200]
@@ -57,7 +61,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # サムネイルを生成する設定
    version :thumb do
-     process :resize_to_fill => [40, 40, gravity = ::Magick::CenterGravity]
+     process :resize_to_fill => [150, 150, gravity = ::Magick::CenterGravity]
    end
 
   # jpg,jpeg,gif,pngしか受け付けない

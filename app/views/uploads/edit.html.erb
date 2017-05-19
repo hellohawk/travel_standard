@@ -4,7 +4,7 @@
 
     <h3>編集する</h3>
 
-<%= form_tag('/uploads/update',:method => :put, :multipart => true ) do %>
+<%= form_tag("/uploads/#{@upload.id}",:method => :patch, :multipart => true ) do %>
     <%= select_tag :continent, options_for_select(@continents) %>
     <%= select_tag :subcontinent, options_for_select(@subcontinents) %>
     <%= select_tag :country, options_for_select(@countries) %>

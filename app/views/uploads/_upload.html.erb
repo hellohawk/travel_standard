@@ -1,11 +1,13 @@
 
-
-<div>
 <% uploads.each do |upload| %>
-      <tr>
-        <td><%= image_tag upload.image.to_s %></td>
-      </tr>
+
+  <div class="2u">
+    <span class="image fit">
+      <a href="#"><%= image_tag upload.image.thumb.to_s %></a>
+    </span>
+  </div>
+
 <% end %>
-</div>>
+
 
 <!-- ここは多分消す -->

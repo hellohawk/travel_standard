@@ -1,16 +1,23 @@
 <div class="contents row">
   <div class="container">
 
+<hr />
 
-  <%= form_tag('/uploads',:method => :post, :multipart => true ) do %>
+  <h1 style="text-align: center;">思い出の場所と写真を投稿しよう</h1>
+
+  <%= form_tag('/uploads',:method => :post, :remote=>true, :multipart => true ) do %>
+    <h3>◆ 写真を撮ったところ"大陸名" を選んでね</h3>
     <%= select_tag :continent, options_for_select(@continents) %>
+    <h3>◆ 次に "地方名" を選んでね</h3>
     <%= select_tag :subcontinent, options_for_select(@subcontinents) %>
+    <h3>◆ 次に "国名" を選んでね</h3>
     <%= select_tag :country, options_for_select(@countries) %>
+    <h3>◆ 次に "都市" を入力してね</h3>
     <%= text_field :city, :id %>
+    <h3>◆ 最後に 写真を投稿しよう</h3>
     <%= file_field_tag :image %>
     <%= submit_tag 'upload' %>
   <% end %>
-
 
  </div>
 </div>

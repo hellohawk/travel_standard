@@ -5,6 +5,10 @@ class UploadsController < ApplicationController
   def index
      # @uploads = Upload.includes(:user).page(params[:page]).per(5).order("created_at DESC")
      @uploads = Upload.all[1..100]
+     @china = Upload.where(country:"CN")[1..4]
+     @japan = Upload.where(country:"JP")[3..6]
+     @india = Upload.where(country:"IN")[1..4]
+
       gon.region = "001"
       gon.resolution = "continents"
       gon.data = [["region_name","region_code"]] + Map.where(pre_resolutions:gon.region).pluck(:regions_name,:regions)
@@ -51,8 +55,7 @@ class UploadsController < ApplicationController
   end
 
   def destroy
-    binding.pry
-    @upload.destroy
+    Upload.destroy(params[:id])
     respond_to do |format|
       format.html { redirect_to uploads_url, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
@@ -75,15 +78,23 @@ class UploadsController < ApplicationController
       @subcontinents = make_select_option(Map.where(resolutions:"subcontinents"))
       @countries = make_select_option(Map.where(resolutions:"country"))
     end
+
+    @upload = Upload.find(params[:id])
   end
 
   def update
-    @upload = Upload.new(id:params[:id],image: params[:image], continent:params[:continent], subcontinent: params[:subcontinent], country: params[:country], city: params[:city], user_id: current_user.id)
 
-binding.pry
+    @upload = Upload.find_by(id:params[:id])
+    @upload[:city] = params[:city][:id]
+    @upload[:country] = params[:country]
+    @upload[:subcontinent] = params[:subcontinent]
+    @upload[:continent] = params[:continent]
+    @upload[:search_id] = Search.where(city:params[:city]).pluck("id")[0]
+    @upload[:map_id] = Map.where(regions:params[:city]).pluck("id")[0]
+    @upload[:image] = params[:image]
 
     respond_to do |format|
-      if @upload.update
+      if @upload.save!
         format.html { redirect_to @upload, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @upload }
       else
@@ -101,17 +112,26 @@ binding.pry
       gon.resolution = params[:resolution]
       gon.data = [["region_code","region_name"]] + Map.where(pre_resolutions:gon.region).pluck(:regions_name,:regions)
 
+      @china = Upload.where(country:"CN")[1..4]
+      @japan = Upload.where(country:"JP")[1..4]
+      @india = Upload.where(country:"IN")[1..4]
+
       if gon.resolution == "subcontinents" then
         @uploads = Upload.where(subcontinent:gon.region).order("likes_count")
       elsif gon.resolution == "country" then
         @uploads = Upload.where(country:gon.region).order("likes_count")
       elsif gon.resolution == "city" then
         @uploads = Upload.where(country:gon.region).order("likes_count")
+      elsif gon.resolution == "city" then
+        @uploads = Upload.where(country:params[:region]).order("likes_count")
       end
 
-      if @uploads.length >100 then
+      if @uploads == nil then
+        @uploads = @uploads = Upload.all[1..10]
+      elsif @uploads.length >100 then
         @uploads = @uploads[0..99]
       end
+
 
       # @uploads = Upload.includes(:user).page(params[:page]).per(5).order("created_at DESC")
       render :action => "index"

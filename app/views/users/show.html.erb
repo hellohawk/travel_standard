@@ -1,22 +1,23 @@
-  <div class="contents row" >
-    <p><%= @nickname %>さんの投稿一覧</p>
+<div class="wrapper">
+  <hr />
 
-    <div>
+<h1> あなた が投稿した写真 </h1>
+
+  <hr />
+    <div class="box alt">
+       <div class="row 50% uniform">
     <% @uploads.each do |upload| %>
-          <tr>
-            <td><%= image_tag upload.image.to_s %></td>
-          <li>
-            <%= link_to '編集', "/uploads/#{upload.id}/edit", method: :get %>
-          </li>
-          <li>
-            <%= link_to '削除', "/uploads/#{upload.id}", method: :delete %>
-          </li>
-          </tr>
+          <div class="2u">
+            <span class="image fit">
+              <%= image_tag upload.image.to_s %>
+              <%= upload.created_at.to_s %>
+          <h4><%= link_to '編集', "/uploads/#{upload.id}/edit", method: :get %></h4>
+          <h4><%= link_to '削除', "/uploads/#{upload.id}", method: :delete %></h4>
+            </span>
+          </div>
     <% end %>
-    </div>>
+        </div>
+      </div>
 
-
-
-
-    <%= paginate(@uploads) %>
+   <h2> <%= paginate(@uploads) %> </h2>
   </div>

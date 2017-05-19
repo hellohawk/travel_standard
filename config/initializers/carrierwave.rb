@@ -19,4 +19,6 @@ CarrierWave.configure do |config|
         config.fog_directory  = 'hatorip'
         config.asset_host = 'https://s3-us-west-2.amazonaws.com/hatorip'
     end
+
+    config.cache_dir = "travel_standard/tmp/cache"
 end

@@ -1,10 +1,9 @@
 #regions_div path, #regions_div path:hover {
-    stroke-width:1px;
+    text-align: center;
 }
-
-
+/*
 #wrapper {
-  width: 1000%;
+  width: 1400%;
   height: 200px;
   position: absolute;
   top: 0;
@@ -13,7 +12,7 @@
   background-color: #fff;
   overflow: hidden;
 }
-
+*/
 #mask {
   width: 500%;
   height: 100%;
@@ -29,8 +28,8 @@
 }
 
 .content {
-  width: 400px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   top: 20%;
   margin: 0 auto;
   background-color: #aaa;

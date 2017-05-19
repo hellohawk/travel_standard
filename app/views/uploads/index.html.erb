@@ -1,32 +1,62 @@
 
-    <div class="3u$ 12u$(small)">
-      <input type="submit" value="Search" class="fit" />
-    </div>
-
-    <div id="regions_div"></div>
-    <hr />
+<hr />
+  <div>
+    <a href='/'><input type="submit" value="Search (reload! )" class="fit" /><a>
+      <div id="regions_div">
+  </div>
+<hr />
 
 <section id="main" class="wrapper">
-<h2>photos</h2>
-                 <div class="box alt">
-                    <div class="row 50% uniform">
-                      <!-- <div class="4u"><span class="image fit"><%= image_tag "pic01.jpg" %></span></div>
-                      <div class="4u"><span class="image fit"><%= image_tag "pic01.jpg" %></span></div>
-                      <div class="4u"><span class="image fit"><%= image_tag "pic01.jpg" %></span></div> -->
-                      <!-- Break -->
-<!--                       <div class="4u"><span class="image fit"><%= image_tag "pic01.jpg" %></span></div>
-                      <div class="4u"><span class="image fit"><%= image_tag "pic01.jpg" %></span></div>
-                      <div class="4u"><span class="image fit"><%= image_tag "pic01.jpg" %></span></div> -->
-                      <!-- Break -->
-<!--                       <div class="4u"><span class="image fit"><%= image_tag "pic01.jpg" %></span></div>
-                      <div class="4u"><span class="image fit"><%= image_tag "pic01.jpg" %></span></div>
-                      <div class="4u"><span class="image fit"><%= image_tag "pic01.jpg" %></span></div> -->
-                    </div>
-                  </div>
+  <hr/ >
+  <h2>Japans' Photos</h2>
+  <hr/ >
+    <div class="box alt">
+      <div class="row 50% uniform">
+        <% @japan.each do |upload| %>
+        <div class="2u">
+          <span class="image fit">
+            <a href="/uploads/search/?region=JP&resolution=country" ><%= image_tag upload.image.thumb.to_s %></a>
+          </span>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  <hr/ >
+  <h2>Indeas' Photos</h2>
+  <hr/ >
+    <div class="box alt">
+      <div class="row 50% uniform">
+        <% @india.each do |upload| %>
+        <div class="2u">
+          <span class="image fit">
+            <a href="/uploads/search/?region=IN&resolution=country" ><%= image_tag upload.image.thumb.to_s %></a>
+          </span>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  <hr/ >
+  <h2>Chinas' Photos</h2>
+  <hr/ >
+    <div class="box alt">
+      <div class="row 50% uniform">
+        <% @china.each do |upload| %>
+        <div class="2u">
+          <span class="image fit">
+            <a href="/uploads/search/?region=CN&resolution=country" ><%= image_tag upload.image.thumb.to_s %></a>
+          </span>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  <hr/ >
+  <h1>Worlds' Photos</h1>
+  <hr/ >
+   <div class="box alt">
+    <div class="row 50% uniform">
+      <%= render partial: "upload", locals: { uploads: @uploads } %>
+    </div>
+  </div>
 </section>
-
-    <%= render partial: "upload", locals: { uploads: @uploads } %>
-
-
 
 </div>

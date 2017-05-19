@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Travel_standard</title>
+    <title>Hatorip</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <!-- コレがないと読み込めない -->
     <%= include_gon %>
@@ -19,47 +19,43 @@
   <body>
 
 
+<% if user_signed_in? %>
    <header id="header">
         <nav class="left">
-          <a href="#menu"><span>Menu</span></a>
+            <a href="/users/<%= current_user.id %>">mypage</a>
+            <a class="post" href="/uploads/new">投稿する</a>
         </nav>
-        <a href="/" class="logo">Hatoip</a>
+        <a href="/" class="logo">Hatorip</a>
 
-<% if user_signed_in? %>
         <nav class="right" >
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete ,:class => "button alt" %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </nav>
-        </header>
+
     <!-- Menu -->
-        <nav id="menu">
-          <ul class="links">
-            <li><a href="/users/<%= current_user.id %>">mypage</a></li>
-            <li><a class="post" href="/uploads/new">投稿する</a></li>
-          </ul>
-        </nav>
 <% else %>
+   <header id="header">
+        <a href="/" class="logo">Hatorip</a>
+
         <nav class="right">
           <%= link_to "新規登録", new_user_registration_path, :class => 'post' %>
           <!-- <a href="#" class="button alt">Log in</a> -->
           <%= link_to "ログイン", new_user_session_path, :class => 'post' %>
         </nav>
+        <hr />
         </header>
   <!-- Banner -->
       <section id="banner">
-        <div>
-          <h1>Search Image for Trip</h1>
-          <p>this site は 画像を検索するためにある.<br />楽しんでくれよな.</p>
+          <h1>Search, Catch, Stock</h1>
+          <p>遠い土地へ、想いを寄せるサイト</p>
           <ul class="actions">
-          <%= link_to "新規登録", new_user_registration_path, :class => 'post' %>
-          <%= link_to "ログイン", new_user_session_path, :class => 'post' %>
-            <!-- <li><a href="#regions_div" class="button scrolly">Get Started</a> -->
+          <%= link_to "Sinn Up", new_user_registration_path, :class => 'post' %>
+          <%= link_to "Log in", new_user_session_path, :class => 'post' %>
             </li>
           </ul>
-        </div>
       </section>
 
 <% end %>
-
+  </header>
 
   <%= yield %>
 

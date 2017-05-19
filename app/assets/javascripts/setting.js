@@ -1,6 +1,8 @@
 
 $(window).load(function(){
 
+function initMap(){};
+
   var $subcontinents = $('#subcontinent');
   var original_subcontinents = $subcontinents.html();
   var $countries = $('#country');
@@ -110,10 +112,7 @@ $(window).load(function(){
   });
 });
 
-
-
 function initMap(){};
-
 $("#regions_div").ready(function(){
 
     google.charts.load('current', {'packages':['geochart']});
@@ -125,6 +124,8 @@ $("#regions_div").ready(function(){
         var data = google.visualization.arrayToDataTable(gon.data);
 
         var options = {
+          width: 1200,
+          height: 600,
           region: gon.region,
           resolution: gon.resolution,
           backgroundColor: '#81d4fa',
@@ -149,8 +150,8 @@ $("#regions_div").ready(function(){
         var data = google.visualization.arrayToDataTable(gon.data);
 
         var options = {
-          backgroundColor: '#81d4fa',
-          enableRegionInteractivity: 'true'
+          chartArea: {left:10,top:10,bottom:0,height:"100%"},
+          backgroundColor: '#81d4fa'
         };
 
         options['colorAxis'] = { minValue : 0, maxValue : 1, colors : ['#FF0000','#0000FF']};

@@ -1,4 +1,8 @@
-    <%= form_for(@upload) do |f| %>
-      <%= f.label :image,"ユーザー画像" %>
-      <%= f.file_field :image %>
-    <% end %>
+
+<% uploads.each do |upload| %>
+  <div class="2u">
+    <span class="image fit">
+      <a href="/uploads/search/?region=#upload[:country]#&resolution=country" ><%= image_tag upload.image.thumb.to_s %></a>
+    </span>
+  </div>
+<% end %>
